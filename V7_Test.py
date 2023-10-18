@@ -20,8 +20,6 @@ import random
 emailUserName = 'paperstocksnj@gmail.com'
 
 emailPassword = 'oeurjrdemmeyrffb'
-
-
 class Emails():  
     def __init__(self , username , password):
         serverStart = 'imap.gmail.com'
