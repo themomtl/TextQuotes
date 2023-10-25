@@ -19,24 +19,34 @@ import random
 import Emails
 import Stocks
 import MongoDB
+import GroupMe
 
 def Main():
     
-    emailUserName = 'paperstocksnj@gmail.com'
+    emailUserName = 'lakewoodnjQuotes@gmail.com'
 
-    emailPassword = 'oeurjrdemmeyrffb'
+    emailPassword = 'hlxnxrjvtgxeijky'
 
     email = Emails.LogIn(emailUserName,emailPassword)            
     from_ ,tick = email.GetDataAndFroms()
     print(from_,tick)
     db = MongoDB
 
-    def WlProcesser(wl):
+    def WlProcesser(wl,user):
         result = ""
         for i in wl:
+            db.DB(i,user).newUse()
             result += Stocks.Stocks(i).getOneTickerResponse()
         return result    
-        
+    def SendEmail(from_, message):
+        if from_ == '8482619494@mms.att.net':
+            GroupMe.GroupMe('Quotes',message)
+        elif from_ == '8482612817@mms.att.net':
+            GroupMe.GroupMe('jacobson',message)
+        else:            
+            email.sendserver.sendmail(
+                email.username, from_, message)
+        print(f"{time.asctime()}\n{from_}\n{message}")    
 
     for i, user in enumerate(from_):
         tickLen = len(tick[i])
@@ -45,10 +55,16 @@ def Main():
             if len(ticker) >= 3 and ticker[:2] == "WL":
                 listnum = Stocks.Stocks(ticker).watchLists()
                 wl = db.DB(listnum,user).getWLByUser()
-                response = WlProcesser(wl)
-                email.sendserver.sendmail(email.username,user,response)
+                response = WlProcesser(wl,user)
+                SendEmail(user,response)
             else:    
                 db.DB(ticker,user).newUse()
-                email.sendserver.sendmail(email.username,user,Stocks.Stocks(ticker).getOneTickerResponse())
+                SendEmail(user,Stocks.Stocks(ticker).getOneTickerResponse())
         elif(tickLen >= 2):
-            email.sendserver.sendmail(email.username,user,"sorry Working on some bugs")
+            SendEmail(user,"sorry Working on some bugs")
+            
+schedule.every(10).seconds.do(Main)
+
+while 1:
+    schedule.run_pending()
+    time.sleep(1)        

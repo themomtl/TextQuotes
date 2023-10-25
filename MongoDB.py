@@ -27,7 +27,7 @@ class DB:
 
     def getWLByUser(self):
         document = self.__wlCollection.find({'User': self.__address}).skip(
-            self.__ticker).limit(1)[0]["Tickers"].split(',')
+            self.__ticker-1).limit(1)[0]["Tickers"].split(',')
         return document
 
     def getWlCount(self):
