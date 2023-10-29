@@ -28,6 +28,12 @@ class Stocks:
         result += f"Percent Change: {self.getPercentChange()}%\n"
         result += f"Previous Close: ${self.getPreviousClose()}\n"
         return result
+    def dayHighLow(self):
+        result = f"{self.__ticker}\n"
+        result += f"Price: {self.getPrice()}\n"
+        result += f"Day Low {self.__raw['l']}\n"
+        result += f"Day High {self.__raw['h']}\n"
+        return result
     def watchLists(self):
         wl = int(self.__ticker.strip('WL'))
         return wl
