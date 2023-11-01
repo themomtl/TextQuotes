@@ -68,7 +68,7 @@ def Main():
 
         emailPassword = 'hlxnxrjvtgxeijky'
 
-        email = Emails.LogIn(testUser, testPass)
+        email = Emails.LogIn(emailUserName, emailPassword)
         from_, tick = email.GetDataAndFroms()
         # print(from_,tick)
         db = MongoDB
@@ -86,9 +86,9 @@ def Main():
             except Exception as e:
                 # print(str(e))
                 SendEmail('8482262840@mms.att.net', f"ERROR: {str(e)}")
-    except e:
+    except Exception as e:
         print(e)
-        
+
 
 schedule.every(10).seconds.do(Main)
 
