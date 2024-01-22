@@ -20,9 +20,14 @@ class Stocks:
     
     def getPreviousClose(self):
         return self.__raw['pc']   
-    
+    def getCompanyName(self):
+        raw = self.__finnhub_client.company_profile2(symbol=f'{self.__ticker}')
+        if 'name' in raw:
+            return raw['name']
+        else:
+            return self.__ticker
     def getOneTickerResponse(self):
-        result = f"{self.__ticker}\n"
+        result = f"{self.getCompanyName()}\n"
         result += f"Price: {self.getPrice()}\n"
         result += f"Change: ${self.getChange()}\n"
         result += f"Percent Change: {self.getPercentChange()}%\n"

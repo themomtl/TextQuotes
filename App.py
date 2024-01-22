@@ -21,7 +21,7 @@ import Stocks
 import MongoDB
 import GroupMe
 
-
+nltk.download('punkt')
 def Main():
     try:
         def WlProcesser(wl, user):
@@ -84,8 +84,8 @@ def Main():
                 elif (tickLen >= 3):
                     SendEmail(user, "sorry Working on some bugs")
             except Exception as e:
-                # print(str(e))
-                SendEmail('8482262840@mms.att.net', f"ERROR: {str(e)}")
+                print(str(e))
+                SendEmail('8482262840@mms.att.net', f"ERROR {str(e)}")
     except Exception as e:
         print(e)
 
