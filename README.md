@@ -1,4 +1,4 @@
-# Real-Time Stock Quotes
+# Texting Real-Time Stock Quotes
 
 This program is designed for users who don't have internet access to get real-time stock quotes.
 
