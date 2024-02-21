@@ -4,18 +4,9 @@ from hashlib import new
 import smtplib
 import email
 import imaplib
-import pprint
 from bs4 import BeautifulSoup
 import nltk
-import finnhub
 import time
-import schedule
-import pymongo
-import certifi
-import datetime
-from finvizfinance.quote import finvizfinance
-import requests
-import random
 
 
 class LogIn():
@@ -80,4 +71,4 @@ class LogIn():
         else:
             print(f"\nstocks\n{time.asctime()}\nNo mail")
             return froms, data
-# print(Emails(emailUserName,emailPassword).GetDataAndFroms())
+

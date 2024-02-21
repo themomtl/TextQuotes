@@ -3,9 +3,8 @@ import finnhub
 
 class Stocks:
     
-    __finnhub_client = finnhub.Client(api_key="c6s0ql2ad3ifcngb8qvg")
+    __finnhub_client = finnhub.Client(api_key="")
     def __init__(self,ticker):
-        #self.__address = address
         self.__ticker = ticker
         self.__raw = self.__finnhub_client.quote(self.__ticker)
         

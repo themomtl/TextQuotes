@@ -1,21 +1,8 @@
 from cgitb import html
-# from email import message
 from hashlib import new
-import smtplib
-import email
-import imaplib
-import pprint
-from bs4 import BeautifulSoup
 import nltk
-import finnhub
 import time
 import schedule
-import pymongo
-import certifi
-import datetime
-from finvizfinance.quote import finvizfinance
-import requests
-import random
 import Emails
 import Stocks
 import MongoDB
@@ -59,14 +46,14 @@ def Main():
                 response = Stocks.Stocks(ticker).dayHighLow()
                 SendEmail(user, response)
         #########################
-        testUser = 'paperstocksnj@gmail.com'
+        testUser = ''
 
-        testPass = "oeurjrdemmeyrffb"
+        testPass = ""
         ##########################
 
-        emailUserName = 'lakewoodnjQuotes@gmail.com'
+        emailUserName = ''
 
-        emailPassword = 'hlxnxrjvtgxeijky'
+        emailPassword = ''
 
         email = Emails.LogIn(emailUserName, emailPassword)
         from_, tick = email.GetDataAndFroms()
